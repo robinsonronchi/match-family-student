@@ -12,12 +12,8 @@ https://ai.google.dev/gemini-api/docs/get-started/python
 """
 
 import os
-
 import google.generativeai as genai
-
 import PyPDF2
-import requests
-from io import BytesIO
 
 # Configuração da API do Google Generative AI
 GOOGLE_API_KEY="AIzaSyAAs3aY-bon_wMr7CtU7zw-JnMl5bC3ES0"
@@ -32,6 +28,7 @@ generation_config = {
   "max_output_tokens": 8192,
   "response_mime_type": "text/plain",
 }
+
 safety_settings = [
   {
     "category": "HARM_CATEGORY_HARASSMENT",
@@ -57,17 +54,6 @@ model = genai.GenerativeModel(
   generation_config=generation_config,
 )
 
-"""
-def extract_text_from_pdf(pdf_path: str) -> str:
-    with open(pdf_path, 'rb') as pdf_file:
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
-        text = ""
-        for page_num in range(len(pdf_reader.pages)):
-            page = pdf_reader.pages[page_num]
-            text += page.extract_text()
-    return text
-"""
-
 # Função para extrair texto das páginas do PDF
 def extract_text_from_pdf(file_stream) -> list[str]:
     parts = []
@@ -76,19 +62,6 @@ def extract_text_from_pdf(file_stream) -> list[str]:
     for index, page in enumerate(pages):
         parts.append(page)
     return parts
-
-# Constantes
-FAMILIES_DIR = r"C:\Users\tatia\Code\match-family-student\profiles\families"
-STUDENTS_DIR = r"C:\Users\tatia\Code\match-family-student\profiles\students"
-
-families = []
-students = []
-
-def clean_text(text):
-    # Remove espaços extras entre caracteres
-    cleaned_text = text.replace('\n', ' ').replace('  ', ' ')
-    cleaned_text = ' '.join(cleaned_text.split())
-    return cleaned_text
 
 def load_profiles():
     # Verifica se os diretórios existem
@@ -102,7 +75,6 @@ def load_profiles():
         if filename.endswith(".pdf"):
             filepath = os.path.join(FAMILIES_DIR, filename)
             text = extract_text_from_pdf(filepath)
-            #cleaned_text = clean_text(text)  # Limpa o texto extraído
             families.append(text)
 
     # Carrega os perfis de estudantes
@@ -110,8 +82,14 @@ def load_profiles():
         if filename.endswith(".pdf"):
             filepath = os.path.join(STUDENTS_DIR, filename)
             text = extract_text_from_pdf(filepath)
-            #cleaned_text = clean_text(text)  # Limpa o texto extraído
             students.append(text)
+
+# Constantes
+FAMILIES_DIR = r"C:\Users\tatia\Code\match-family-student\profiles\families"
+STUDENTS_DIR = r"C:\Users\tatia\Code\match-family-student\profiles\students"
+
+families = []
+students = []
 
 # Chama a função para carregar os perfis
 load_profiles()
