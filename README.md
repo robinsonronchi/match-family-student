@@ -1,5 +1,7 @@
 # MatcHarmony: Aesthetic AI Matchmaking for Host Families and Exchange Students
 
+![Welcome](https://github.com/robinsonronchi/match-family-student/blob/main/utils/welcome.webp)
+
 ## 📒 Descrição
 Este projeto visa automatizar o processo de correspondência entre famílias anfitriãs e estudantes de intercâmbio com base em descrições detalhadas de estilos de vida, valores, hábitos e rotinas fornecidas nos formulários de inscrição. Utilizando IA generativa, o sistema analisa os perfis para identificar a melhor compatibilidade entre famílias e estudantes.
 
@@ -97,6 +99,8 @@ students = []
 # Chama a função para carregar os perfis
 load_profiles()
 ```
+
+![MatHarmony Engine](https://github.com/robinsonronchi/match-family-student/blob/main/utils/matcharmony.webp)
 
 3. **Análise e Correspondência**: Criação de uma sessão de chat com o modelo de IA para analisar os perfis e determinar a correspondência mais adequada entre famílias e estudantes.
 
