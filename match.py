@@ -16,7 +16,7 @@ import google.generativeai as genai
 import PyPDF2
 
 # Configuração da API do Google Generative AI
-GOOGLE_API_KEY="AIzaSyAAs3aY-bon_wMr7CtU7zw-JnMl5bC3ES0"
+GOOGLE_API_KEY="Insira sua API KEY aqui"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Create the model
